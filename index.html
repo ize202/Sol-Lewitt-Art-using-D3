@@ -43,6 +43,28 @@
         .attr('width', width)
         .attr('height', 10)
         .attr('mask', 'url(#circle-mask)')
+
+        const mask = svg
+        .append('mask')
+        .attr('id', 'circle-mask')
+        // .append('circle')
+        // .attr('cx', width / 2)
+        // .attr('cy', height / 2)
+        // .attr('r', 100)
+        // .attr('fill', 'white')
+
+        mask
+        .append('rect')
+        .attr('width', width)
+        .attr('height', height)
+        .attr('fill', 'black')
+
+        mask
+        .append('circle')
+        .attr('cx', width / 2)
+        .attr('cy', height / 2)
+        .attr('r', 200)
+        .attr('fill', 'white')
     </script>
         
 </body>
