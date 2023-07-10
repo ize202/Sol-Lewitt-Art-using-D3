@@ -6,13 +6,33 @@ import { select } from "d3";
  const height = innerHeight; 
 
  // SVG
+ 
+ //  const svg  = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+ //  svg.setAttribute("width", width);
+ //  svg.setAttribute("height", height);
+ //  document.body.appendChild(svg);
+ const svg = select("body").append("svg").attr("width", width).attr("height", height);
+ 
 
-//  const svg  = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-//  svg.setAttribute("width", width);
-//  svg.setAttribute("height", height);
-//  document.body.appendChild(svg);
-const svg = select("body").append("svg").attr("width", width).attr("height", height);
-
+ const n = 100;
+ const marks = [];
+ for (let i = 0; i < n; i++){
+     marks.push({
+        y: i * 20,
+        width: width,
+        height: '10',
+        mask: 'url(#circle-mask)'
+    });
+ }
+ 
+ svg
+ .selectAll("rect")
+ .data(marks)
+ .join("rect")
+ .attr('y', (d) => d.y)
+ .attr('width', (d) => d.width)
+ .attr('height', (d) => d.height)
+ //.attr('mask', (d) => d.mask)
  // Mask
 
 //  const mask  = document.createElementNS('http://www.w3.org/2000/svg' ,'mask'); 
@@ -61,6 +81,10 @@ const svg = select("body").append("svg").attr("width", width).attr("height", hei
 //      rect.setAttribute("mask", "url(#circle-mask)");
 //      svg.appendChild(rect);
 //  }
+
+
+
+
 
 //  for (let i = 0; i < n; i++){
 //      const rect  = document.createElementNS('http://www.w3.org/2000/svg' ,'rect'); 
