@@ -10,9 +10,40 @@
             box-sizing: border-box;
         }
     </style>
-    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 </head>
 <body>
+    <script type="module">
+        // Canvas
+        const width = innerWidth;
+        const height = innerHeight; 
 
+        // SVG
+        
+        const svg = d3.select("body").append("svg").attr("width", width).attr("height", height);
+        
+
+        const n = 100;
+        const marks = [];
+        for (let i = 0; i < n; i++){
+            marks.push({
+                y: i * 20,
+                width: width,
+                height: '10',
+                mask: 'url(#circle-mask)'
+            });
+        }
+        
+        svg
+        .selectAll("rect")
+        .data(marks)
+        .join("rect")
+        .attr('y', (d) => d.y)
+        .attr('width', (d) => d.width)
+        .attr('height', (d) => d.height)
+        .attr('mask', (d) => d.mask)
+
+    </script>
+        
 </body>
 </html>
