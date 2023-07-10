@@ -24,25 +24,25 @@
         
 
         const n = 100;
-        const marks = [];
-        for (let i = 0; i < n; i++){
-            marks.push({
-                y: i * 20,
-                width: width,
-                height: '10',
-                mask: 'url(#circle-mask)'
-            });
-        }
+        // const marks = [];
+        // for (let i = 0; i < n; i++){
+        //     marks.push({
+        //         y: i * 20,
+        //         width: width,
+        //         height: '10',
+        //         mask: 'url(#circle-mask)'
+        //     });
+        // }
+        console.log(d3.range(5));
         
         svg
         .selectAll("rect")
-        .data(marks)
+        .data(d3.range(n))
         .join("rect")
-        .attr('y', (d) => d.y)
-        .attr('width', (d) => d.width)
-        .attr('height', (d) => d.height)
-        .attr('mask', (d) => d.mask)
-
+        .attr('y', (d) => d * 20)
+        .attr('width', width)
+        .attr('height', 10)
+        .attr('mask', 'url(#circle-mask)')
     </script>
         
 </body>
