@@ -32,7 +32,7 @@
         .attr('width', width)
         .attr('height', 10)
         .attr('class', 'horizontal')
-        .attr('mask', 'url(#circle-mask)')
+        .attr('mask', 'url(#mask-1)')
 
         svg
         .selectAll("rect.vertical")
@@ -42,32 +42,39 @@
         .attr('width', 10)
         .attr('height', height)
         .attr('class', 'vertical')
-        .attr('mask', 'url(#circle-mask-2)')
+        .attr('mask', 'url(#mask-2)')
 
         // Mask 1
+        const symbols = [d3.symbolCircle, d3.symbolCross, d3.symbolDiamond, d3.symbolSquare, d3.symbolStar, d3.symbolTriangle, d3.symbolWye];
 
+        
         const mask = svg
         .append('mask')
-        .attr('id', 'circle-mask')
-
+        .attr('id', 'mask-1')
+        
         mask
         .append('rect')
         .attr('width', width)
         .attr('height', height)
         .attr('fill', 'black')
 
+        // Circle Symbol
+        let circle = d3.symbol()
+        .type(symbols[0])  
+        .size(30000); 
+
         mask
-        .append('circle')
-        .attr('cx', width / 2)
-        .attr('cy', height / 2)
-        .attr('r', 200)
+        .append('g')
+        .attr('transform', `translate(${width / 2}, ${height / 2})`)
+        .append('path')
+        .attr("d", circle())
         .attr('fill', 'white')
 
         // Mask 2
 
         const mask2 = svg
         .append('mask')
-        .attr('id', 'circle-mask-2')
+        .attr('id', 'mask-2')
 
         mask2
         .append('rect')
@@ -76,10 +83,10 @@
         .attr('fill', 'white')
 
         mask2
-        .append('circle')
-        .attr('cx', width / 2)
-        .attr('cy', height / 2)
-        .attr('r', 200)
+        .append('g')
+        .attr('transform', `translate(${width / 2}, ${height / 2})`)
+        .append('path')
+        .attr("d", circle())
         .attr('fill', 'black')
     </script>
         
